@@ -21,4 +21,7 @@ $ git commit -m "a description of the things you changed"
 
 # Do the following when you're ready to make your pull request.
 $ git push origin a_descriptive_branch_name
+
+# Go back to the master branch
+$ git checkout master
 ```
