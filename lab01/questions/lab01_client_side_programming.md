@@ -74,6 +74,99 @@
 1. What does CSS stand for?
     - Cascading Style Sheets
 2. What are the three ways of inserting a style sheet?
+    - Inserting an external style sheet
+    - Inserting an internal style sheet
+      - Use the `<style>` tag inside the `<head>` section
+    - Using an inline style sheet
 3. What is the syntax to link to an external style sheet?
+    - `<link rel="stylesheet" type="text/css" href="mystyle.css">`
 
 ### Questions 3
+
+1. List arithmetic operators in JavaScript and their descriptions
+
+    |Operator|Description   |
+    |--------|--------------|
+    |+       |Addition      |
+    |-       |Subtraction   |
+    |*       |Multiplication|
+    |**      |Exponentiation|
+    |/       |Division      |
+    |%       |Modulus       |
+    |++      |Increment     |
+    |--      |Decrement     |
+2. List assignment operators in Javascript and their descriptions
+
+    |Operator|Equivalent To|
+    |--------|-------------|
+    |=       |x = y        |
+    |+=      |x = x + y    |
+    |-=      |x = x - y    |
+    |*=      |x = x * y    |
+    |/=      |x = x / y    |
+    |%=      |x = x % y    |
+3. List comparison operators in JavaScript and their descriptions
+
+    |Operator|Description                      |
+    |--------|---------------------------------|
+    |==      |equal to                         |
+    |===     |equal value and equal type       |
+    |!=      |not equal                        |
+    |!==     |not equal value or not equal type|
+    |>       |greater than                     |
+    |<       |less than                        |
+    |>=      |greater than or equal to         |
+    |<=      |less than or equal to            |
+    |?       |ternary operator                 |
+4. List logical operators in JavaScript and their description
+
+    |Operator    |Description|
+    |------------|-----------|
+    |&&          |logical and|
+    |&#124;&#124;|logical or |
+    |!           |logical not|
+5. List all the datatypes in Javascript
+    - string
+    - number
+    - boolean
+    - object
+    - function
+6. List conditional statements in JavaScript
+    - `if`
+    - `else`
+    - `elsif`
+    - `switch`
+7. List loop statements in JavaScript
+    - `for`
+    - `for/in`
+    - `while`
+    - `do/while`
+8. What is the output of `typeof` function in JavaScript?
+    - The datatype of a JavaScript variable
+9. List HTML keyboard events and mouse events that JavaScript can handle
+    - `onclick`
+    - `onmouseover`
+    - `onmouseout`
+    - `onkeydown`
+10. What are the different ways of inserting JavaScript code in your HTML?
+    - JavaScript must be inserted using the `<script>` tag
+11. What is the difference between an Array and an Object?
+    - All values in JavaScript other than the primitive data types are an `Object`
+    - An `Array` is a kind of `Object` that can hold more than one value in a single variable
+12. What does JSON stand for?
+    - JavaScript Object Notation
+13. What is the syntax to convert JSON text to JavaScript Object?
+   - `var obj = JSON.parse(text);`
+14. Create an Object in JavaScript with the following attributes and methods:
+    - ```javascript
+      var city = {
+        name      : "Calgary",
+        latitude  : 51.0486,
+        longitude : -114.0708,
+        population: 1096833,
+        area      : 825.29,
+        Density   : function() {
+          return this.population / this.area;
+        }
+      };
+      ```
