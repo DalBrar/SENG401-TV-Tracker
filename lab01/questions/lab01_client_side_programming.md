@@ -71,4 +71,9 @@
 
 ### Questions 2
 
+1. What does CSS stand for?
+    - Cascading Style Sheets
+2. What are the three ways of inserting a style sheet?
+3. What is the syntax to link to an external style sheet?
+
 ### Questions 3
