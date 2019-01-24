@@ -42,6 +42,7 @@
 #### 7) What are the main ways to define a color in HTML? (provide examples)
 		To define a color you should use css to define the color of the element.
 		The color itself can then be defined using the following methods:
+		- Color Keyword
 		- RGB: `rgb(#1, #2, #3)`
 			where #1/#2/#3 are numerical values of the colors Red, Green, and Blue respectively from 0 to 255
 		- HEX: `#rrggbb`
@@ -51,7 +52,7 @@
 				`h` is a value of Hue from 0 to 360.
 				`s` is saturation value from 0% to 100%
 				`l` is lightness value from 0% to 100%
-		- RGB: `rgba( r, g, b, a)`
+		- RGBA: `rgba( r, g, b, a)`
 			Similar to RGB with with the added `a` for the alpha value from 0.0 to 1.0
 		- HSLA: `hsla(h, s, l, a)`
 			Similar to HSL with the added `a` for the alpha value from 0.0 to 1.0
@@ -82,6 +83,9 @@
 		`radio` - defines a radio button that lets a user select ONLY ONE of a limited number of choices.
 		`checkbox` - defines a checkbox that lets a user select ZERO or MORE options of a limited number of choices.
 		`button` - defines a button.
+		`number' - for numbers only
+		`tel' - for telephones only
+		
 
 #### 14) What is the difference between “GET” and “POST” in HTML forms? Which one is suitable for sending sensitive data?
 		`GET`
