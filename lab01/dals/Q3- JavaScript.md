@@ -29,7 +29,7 @@
 		`|=` | x \|= y | x = x \| y
 		`**=` | x **= y | x = x ** y
 
-3#### ). List comparison operators in JavaScript and their description.
+#### 3) List comparison operators in JavaScript and their description.
 		Operator | Description
 		`==` | equal to
 		`===` | equal value and equal type
