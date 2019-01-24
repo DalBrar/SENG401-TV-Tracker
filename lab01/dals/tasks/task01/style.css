@@ -1,0 +1,84 @@
+/* General Formatting */
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Play'), url(http://fonts.gstatic.com/s/play/v6/-SXnV4mZjf4oh1IBw13WZw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Play-Bold'), url(http://fonts.gstatic.com/s/play/v6/ZzUearZLklGfoL18Ti0GaQ.woff) format('woff');
+}
+body {
+	font-family:play;
+	background-color: black;
+	color: darkgray;
+}
+
+a:link, a:visited {
+	color: gray;
+	text-decoration: none;
+}
+/* ================================================== */
+
+/* Menu */
+div#menu {
+	display: inline-block
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333333;
+}
+li {float: left;}
+li a {
+	display: block;
+	color: gray;
+	text-align: center;
+	padding: 10px 20px;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 20px;
+	border-left: 1px solid black;
+}
+/* ================================================== */
+
+/* World Map */
+#worldmapcontainer {
+	position: relative;
+	display: inline-block
+}
+.citycircle {
+	position: absolute;
+	border: 2px solid #0000FF;
+    height: 1px;
+    width: 1px;
+	border-radius: 50%;
+}
+.calgary {
+	left: 122px;
+	top: 72px;
+}
+/* ================================================== */
+
+/* Form */
+input, textarea {
+	border-radius: 3px;
+	background-color: black;
+	color: white;
+	border: 1px solid #595959;
+	padding: 6px;
+	vertical-align: middle;
+}
+input[type=text] {width: 500px;}
+input[type=tel] {width: 100px; text-align: center;}
+input[type=email] {width: 300px; text-align: center;}
+input[type=date] {width: 150px; text-align: center;}
+input[type=url] {width: 300px; text-align: center;}
+textarea#msg {width: 500px; height: 100px;}
+input[type=submit] {cursor: pointer;}
+/* ================================================== */
