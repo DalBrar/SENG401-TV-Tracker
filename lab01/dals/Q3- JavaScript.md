@@ -65,7 +65,9 @@
 
 #### 7) List loop statements in JavaScript.
 		- for
+		- forin
 		- while
+		- dowhile
 
 #### 8) What is the output of “typeof” function in JavaScript?
 		Outputs the data type of the variable being passed
