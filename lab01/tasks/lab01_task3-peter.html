@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+<title>SENG 401</title>
+<style>
+  img {
+    padding: 10px;
+  }
+  .highlight-css:hover {
+    background-color: yellow;
+  }
+  .circle {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: red
+  }
+  .quarter-column {
+    float: left;
+    width: 21%;
+    padding: 1%;
+  }
+  .half-column {
+    float: left;
+    width: 48%;
+    padding: 1%;
+  }
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  #moused-over-section-title {
+    padding: 10px 16px;
+    background: #555;
+    color: #f1f1f1;
+    position: fixed;
+    top: 0;
+    width: 100%
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="lab01_task3-peter.js"></script>
+</head>
+<body>
+  <div>
+    <h1 id="moused-over-section-title">&nbsp;</h1>
+  </div>
+  <section id="heading" style="margin-top: 100px">
+    <h1>SENG 401</h1>
+    <marquee>This page brought to you by The Fighting Mongooses</marquee>
+    <div class="row">
+      <img src="https://cdn.stocksnap.io/img-thumbs/960w/KBZCTLSNWU.jpg" />
+      <img src="https://cdn.stocksnap.io/img-thumbs/960w/UKITL3S9TC.jpg" />
+    </div>
+  </section>
+  <section id="about-us">
+    <h2>Team Members</h2>
+    <div class="row">
+      <div class="quarter-column">
+        <img src="https://vignette.wikia.nocookie.net/adventuretimewithfinnandjake/images/6/6b/Starchy.png/revision/latest?cb=20120327221441" />
+        <p>Peter Schulze - 10174446</p>
+      </div>
+      <div class="quarter-column">
+        <img src="https://vignette.wikia.nocookie.net/adventuretimewithfinnandjake/images/6/6b/Starchy.png/revision/latest?cb=20120327221441" />
+        <p>Rebecca - xxxxxxxx</p>
+      </div>
+      <div class="quarter-column">
+        <img src="https://vignette.wikia.nocookie.net/adventuretimewithfinnandjake/images/6/6b/Starchy.png/revision/latest?cb=20120327221441" />
+        <p>Dal - xxxxxxxx</p>
+      </div>
+      <div class="quarter-column">
+        <img src="https://vignette.wikia.nocookie.net/adventuretimewithfinnandjake/images/6/6b/Starchy.png/revision/latest?cb=20120327221441" />
+        <p>Ian - xxxxxxxx</p>
+      </div>
+    </div>
+  </section>
+  <section id="contact-us">
+    <h1>Contact Us</h1>
+    <form>
+      <p>Title: <input type="text"></p>
+      <p>Phone Number: <input type="text"></p>
+      <p>Email Address: <input type="email"></p>
+      <p>Date: <input type="date"></p>
+      <p>Website: <input type="url"></p>
+      <p>Message: <input type="text"></p>
+      <p><input type="submit"></p>
+    </form>
+  </section>
+  <section id="map">
+    <h1>Map</h1>
+    <div class="location" style="float: left;">
+      <img src="WorldMap.png" width="720" height="360">
+      <a href="http://www.calgary.ca">
+        <div id="city-calgary" class="circle" style="position: relative; top: -303px; left: 132px;"></div>
+      </a>
+      <a href="https://www.edmonton.ca/">
+        <div id="city-edmonton" class="circle" style="position: relative; top: -315px; left: 134px;"></div>
+      </a>
+    </div>
+    <div id="city-info" style="float: left; margin: 10px;">
+      <h2>City Information:</h2>
+      <p id="city-name"></p>
+      <p id="city-latitude"></p>
+      <p id="city-longitude"></p>
+      <p id="city-population"></p>
+      <p id="city-area"></p>
+      <p id="city-density"></p>
+    </div>
+  </section>
+</body>
