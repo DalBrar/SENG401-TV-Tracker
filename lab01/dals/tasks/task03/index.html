@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="jquery.js"></script>
+	<title>SENG 401 - Software Architecture</title>
+</head>
+<body id="top">
+<div align="center">
+	<div id="hovering"><div id="hoveringdiv"><h1 id="hoverdisplay">&nbsp;</h1></div></div>
+
+	<h1>SENG 401 - Software Architecture</h1>
+	<div id="menu">
+		<ul>
+			<li><a href="#aboutus">About Us</a></li>
+			<li><a href="#map">Map</a></li>
+			<li><a href="#contactus">Contact Us</a></li>
+		</ul>
+	</div><br><br>
+	
+	<img src="..\imgs\img1.jpg" alt="Simple HTML" width="200" height="200"><img src="..\imgs\img2.jpg" alt="Awesome HTML5" width="200" height="200"><br>
+	
+	<br><hr>
+	<section id="aboutus" name="About Us">
+		<h2>About Us - The Fighting Mongooses</h2>
+		
+		<table>
+			<tr>
+				<td width="20%"><img src="..\imgs\profiles\dal.jpg" alt="Dal" width="200" height="235"></td>
+				<td width="20%"><img src="..\imgs\profiles\ian.jpg" alt="Ian" width="200" height="235"></td>
+				<td width="20%"><img src="..\imgs\profiles\peter.jpg" alt="Peter" width="200" height="235"></td>
+				<td width="20%"><img src="..\imgs\profiles\rebecca.jpg" alt="Rebecca" width="200" height="235"></td>
+			</tr>
+			<tr>
+				<td>
+					<strong>Dalbir Brar</strong><br/>
+					002 968 97<br/>
+				</td>
+				<td>
+					<strong>Ian</strong><br/>
+					Student ID: ?<br/>
+				</td>
+				<td>
+					<strong>Peter</strong><br/>
+					Student ID: ?<br/>
+				</td>
+				<td>
+					<strong>Rebecca</strong><br/>
+					Student ID: ?<br/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Dal is a former Banker who after 10 years of banking decided he'd come back to school to pursue his passion in computer science. Over his time as a banker Dal had been teaching himself as a hobbiest how to program. Initially he started with HTML then moved to CSS, JavaScript, PHP, Java. By then he had enrolled in school for computer science courses and began learning other languages like C++, C and assembly. Today Dal is fluent in many different programming paradigms and aims to continue developing his skills in the many different facets of programming.</p>
+				</td>
+				<td>
+					<p>about stuff here</p>
+				</td>
+				<td>
+					<p>about stuff here</p>
+				</td>
+				<td>
+					<p>about stuff here</p>
+				</td>
+			</tr>
+		</table>
+		<br><a href="#top">Back to Top</a><hr>
+	</section>
+	
+	<section id="map" name="World Map">
+		<h2>World Map</h2>
+		<div id="worldmapcontainer">
+			<img src="..\imgs\worldmap.png" alt="World Map" width="720" height="360" usemap="#worldmap">
+			<a class="citycircle calgary" name="Calgary" href="http://www.calgary.ca" target="_blank"></a>
+			<a class="citycircle edmonton" name="Edmonton" href="https://www.edmonton.ca/" target="_blank"></a>
+		</div>
+		<div id="worldmapdiv"></div>
+		<br><a href="#top">Back to Top</a><hr>
+	</section>
+	
+	<section id="contactus" name="Contact Us">
+		<h2>Contact Us</h2>
+		
+		<p>You can get in touch with us by filling out and submitting the following form.</p>
+		
+		<form action="index.html">
+			Subject:<br>
+			<input type="text" name="subject" value="" placeholder=""><br><br>
+			
+			Phone Number:<br>
+			<input type="tel" name="phone" value="" placeholder="403-123-4567"><br><br>
+			
+			Email Address:<br>
+			<input type="email" name="email" value="" placeholder="first.last@ucalgary.ca"><br><br>
+			
+			Date:<br>
+			<input type="date" name="email" value="" placeholder="Mon dd yyyy"><br><br>
+			
+			Your Website:<br>
+			<input type="url" name="website" value="" placeholder="www.ucalgary.ca"><br><br>
+			
+			Message:<br>
+			<textarea id="msg" name="message" value="" placeholder="What would you like to share with us?"></textarea><br><br>
+			
+			<br>
+			<input type="submit" value="Submit">
+		</form> 
+		<br><a href="#top">Back to Top</a><br>
+	</section>
+</div>
+</body>
+</html>
