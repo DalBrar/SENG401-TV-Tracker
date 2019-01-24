@@ -39,6 +39,7 @@
 		`<` | less than
 		`>=` | greater than or equal to
 		`<=` | less than or equal to
+		`?` | ternary operator
 
 #### 4) List logical operators in JavaScript and their description.
 		Operator | Description
@@ -53,7 +54,7 @@
 		- arrays
 		- objects
 		- function
-		- null
+		- null (is an object)
 		- undefined
 
 #### 6) List conditional statements in JavaScript.
