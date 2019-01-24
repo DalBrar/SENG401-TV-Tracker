@@ -2,6 +2,9 @@
 <head>
 <title>SENG 401</title>
 <style>
+  img {
+    padding: 10px;
+  }
   .highlight-css:hover {
     background-color: yellow;
   }
@@ -35,19 +38,19 @@
     width: 100%
   }
 </style>
-<script src="lab01_task2-peter.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="lab01_task3-peter.js"></script>
 </head>
 <body>
   <div>
     <h1 id="moused-over-section-title">&nbsp;</h1>
   </div>
-  <!-- Uses CSS hover -->
-<section id="heading" style="margin-top: 100px">
-    <h1 class="highlight-css">SENG 401</h1>
-    <marquee class="highlight-css">This page brought to you by The Fighting Mongooses</marquee>
+  <section id="heading" style="margin-top: 100px">
+    <h1>SENG 401</h1>
+    <marquee>This page brought to you by The Fighting Mongooses</marquee>
     <div class="row">
-      <img class="highlight-css half-column" src="https://cdn.stocksnap.io/img-thumbs/960w/KBZCTLSNWU.jpg" />
-      <img class="highlight-css half-column" src="https://cdn.stocksnap.io/img-thumbs/960w/UKITL3S9TC.jpg" />
+      <img src="https://cdn.stocksnap.io/img-thumbs/960w/KBZCTLSNWU.jpg" />
+      <img src="https://cdn.stocksnap.io/img-thumbs/960w/UKITL3S9TC.jpg" />
     </div>
   </section>
   <section id="about-us">
@@ -86,7 +89,7 @@
   <section id="map">
     <h1>Map</h1>
     <div class="location" style="float: left;">
-      <img src="WorldMap.png" width="720" height="360" style="padding: 10px;">
+      <img src="WorldMap.png" width="720" height="360">
       <a href="http://www.calgary.ca">
         <div id="city-calgary" class="circle" style="position: relative; top: -303px; left: 132px;"></div>
       </a>
@@ -104,5 +107,4 @@
       <p id="city-density"></p>
     </div>
   </section>
-  <script>addMouseOverEvents();</script>
 </body>
