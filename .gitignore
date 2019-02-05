@@ -1,0 +1,3 @@
+**/*/.DS_Store
+lab02/tasks/apache_output/*
+!lab02/tasks/apache_output/.gitkeep
