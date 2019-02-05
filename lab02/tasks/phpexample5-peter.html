@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#submit-button").on('click', function() {
+        $.ajax({
+          type: 'GET',
+          url: 'phpexample5-peter.php',
+          data: $('.points-form').serialize(),
+          success: function(response) {
+            $('#result-text').html(response);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <p id="result-text"></p>
+  <form class="points-form">
+    Point 1:<br>
+    x: <input name="x1" type="text">
+    <br>
+    y: <input name="y1" type="text">
+    <br>
+    <br>
+    Point 2:
+    <br>
+    x: <input name="x2" type="text">
+    <br>
+    y: <input name="y2" type="text">
+    <br>
+    <br>
+  </form>
+  <button id="submit-button">Submit</button>
+</body>
+</html>
