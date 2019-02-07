@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SENG 401 - Software Architecture</title>
+	<style>
+		h2 {
+			background-color: #DDDDDD;
+		}
+		div {
+			margin: auto;
+			width: 800px;
+			text-align: center;
+		}
+		ul {
+			display:inline-block;
+			text-align: left;
+		}
+		th {
+			font-weight: bold;
+			text-decoration: underline;
+			width: 33%;
+		}
+		.compare td:nth-child(1) {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<h1>Lab 2 - Server-Side Programming</h1>
+	
+	<h2>1) What is the difference between echo and print commands?</h2>
+	Echo prints whatever strings or string literals you pass it.<br>
+	Print prints the values and types of the variable you pass it.
+	
+	<h2>2) What data types does PHP support?</h2>
+	<ul>
+		<li>String</li>
+		<li>Integer</li>
+		<li>Float/double</li>
+		<li>Boolean</li>
+		<li>Array</li>
+		<li>Object</li>
+		<li>NULL</li>
+		<li>Resource</li>
+	</ul>
+	
+	<h2>3) What is the syntax to define constants in PHP?</h2>
+	define ("variableName", "valueOfVariable", booleanIsCaseIncensitive);
+	
+	<h2>4) List Arithmetic Operators in PHP and compare them with JavaScript's?</h2>
+	<table class="compare">
+		<tr>
+			<th>Operator</th><th>PHP</th><th>Javascript</th>
+		</tr>
+		<tr>
+			<td>Addition</td><td>+</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Subtraction</td><td>-</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Multiplication</td><td>*</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Division</td><td>/</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Modulus</td><td>%</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Exponentiation</td><td>**</td><td>same</td>
+		</tr>
+	</table>
+	
+	<h2>5) List Assignment Operators in PHP and compare them with JavaScript's?</h2>
+	<table class="compare">
+		<tr>
+			<th>Operator</th><th>PHP</th><th>Javascript</th>
+		</tr>
+		<tr>
+			<td>Assign</td><td>x = y</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Addition</td><td>x += y</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Subtraction</td><td>x -= y</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Multiplication</td><td>x *= y</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Divison</td><td>x /= y</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Modulus</td><td>x %= y</td><td>same</td>
+		</tr>
+	</table>
+	
+	<h2>6) List Logical Operators in PHP and compare them with JavaScript's?</h2>
+	<table class="compare">
+		<tr>
+			<th>Operator</th><th>PHP</th><th>Javascript</th>
+		</tr>
+		<tr>
+			<td>Equal</td><td>==</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Identical</td><td>===</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Not Equal</td><td>!= or <></td><td>!=</td>
+		</tr>
+		<tr>
+			<td>Not Identical</td><td>!==</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Greater Than</td><td>></td><td>same</td>
+		</tr>
+		<tr>
+			<td>Less Than</td><td><</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Greater Than Or Equal To</td><td>>=</td><td>same</td>
+		</tr>
+		<tr>
+			<td>Less Than Or Equal To</td><td><=</td><td>same</td>
+		</tr>
+	</table>
+	
+	<h2>7) List String Operators in PHP</h2>
+	<ul>
+		<li><b>stra . strb </b>- Concatenation</li>
+		<li><b>stra .= strb</b>- Appends strb to stra</li>
+		<li><b>strlen(str) </b>- get length of given str</li>
+		<li><b>str_word_count(str) </b>- get number of words in str</li>
+		<li><b>strrev(str) </b>- reverse given string</li>
+		<li><b>strpos(str, subStr) </b>- returns index number where subStr is located in str</li>
+		<li><b>str_replace(needle, str, haystack) </b>- replaces needle in haystack with str</li>
+	</ul>
+	
+	<h2>8) List Array Operators in PHP.</h2>
+	<ul>
+		<li><b>arr1 + arr2 </b>- Union of two arrays</li>
+		<li><b>== </b>- check Equality and have the same key/value pairs</li>
+		<li><b>=== </b>- check Equality and have samy key/value pairs in same order</li>
+		<li><b>!= or <></b>- Not Equal</li>
+		<li><b>!== </b>- Not Identical</li>
+		<li><b>array(val1, val2, val3, etc...) </b>- array instantiation</li>
+		<li><b>array(key1 => val1, key2 => val2, key3 => val3, etc...) </b>- array instantiation</li>
+		<li><b>var[] = val </b>- add value to array</li>
+		<li><b>var[key] = val </b>- set value of key</li>
+		<li><b>var[key] </b>- get value of key in array var, where key can be index number or named-key</li>
+	</ul>
+	
+	<h2>9) List all PHP Conditional Statements.</h2>
+	<ul>
+		<li>if</li>
+		<li>else</li>
+		<li>elseif</li>
+	</ul>
+	
+	<h2>10) What are the array types in PHP?</h2>
+	<ul>
+		<li><b>indexed</b> - Arrays with a numeric index</li>
+		<li><b>associative</b> - Arrays with named keys</li>
+		<li><b>multidimensional</b> - Arrays containing one or more arrays</li>
+	</ul>
+	
+	<h2>11) What is the difference between Tree-Based XML Parsers and Event-Based XML Parsers?</h2>
+	<ul>
+		<li><b>Event-Based Parser</b> - Processes an encountered element and then forgets about it.</li>
+		<li><b>Tree-Based Parser</b> - An in-memory tree is created for the entire document.</li>
+	</ul>
+	
+</div>
+</body>

@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "BOARD": "Calgary School District No. 19", "TYPE": "Public School", "NAME": "Sir Wilfrid Laurier", "ADDRESS": "819 32 ST SE", "CITY": "Calgary", "PROVINCE": "AB", "POSTAL_COD": "T2A0Y9" }, "geometry": { "type": "Point", "coordinates": [ -113.98930608729223, 51.045734771958571 ] } },
+{ "type": "Feature", "properties": { "BOARD": "Westmount Charter School Society", "TYPE": "Charter", "NAME": "Westmount Mid\/High", "ADDRESS": "2215 UXBRIDGE DR NW", "CITY": "Calgary", "PROVINCE": "AB", "POSTAL_COD": "T2N4Y3" }, "geometry": { "type": "Point", "coordinates": [ -114.13251279283305, 51.071047593684938 ] } },
+{ "type": "Feature", "properties": { "BOARD": "Calgary Girls' School Society", "TYPE": "Charter", "NAME": "Calgary Girls'", "ADDRESS": "6304 LARKSPUR WY SW", "CITY": "Calgary", "PROVINCE": "AB", "POSTAL_COD": "T3E5P7" }, "geometry": { "type": "Point", "coordinates": [ -114.11411703806489, 50.99884354495876 ] } },
+{ "type": "Feature", "properties": { "BOARD": "Foundations for the Future Charter Academy Charter School So", "TYPE": "Charter", "NAME": "Southeast Elementary Campus", "ADDRESS": "9711 ACADEMY DR SE", "CITY": "Calgary", "PROVINCE": "AB", "POSTAL_COD": "T2J1A9" }, "geometry": { "type": "Point", "coordinates": [ -114.04540628448977, 50.967241925478241 ] } },
+{ "type": "Feature", "properties": { "BOARD": "Foundations for the Future Charter Academy Charter School So", "TYPE": "Charter", "NAME": "North Middle School Campus", "ADDRESS": "211 MCKNIGHT BV NE", "CITY": "Calgary", "PROVINCE": "AB", "POSTAL_COD": "T2E5S7" }, "geometry": { "type": "Point", "coordinates": [ -114.06060095936884, 51.095453050262513 ] } },
+{ "type": "Feature", "properties": { "BOARD": "Calgary Arts Academy Society", "TYPE": "Charter", "NAME": "Calgary Arts Academy", "ADDRESS": "4931 GROVE HILL RD SW", "CITY": "Calgary", "PROVINCE": "AB", "POSTAL_COD": "T3E4G4" }, "geometry": { "type": "Point", "coordinates": [ -114.15814759677437, 51.035038620486354 ] } }
+]
+}
