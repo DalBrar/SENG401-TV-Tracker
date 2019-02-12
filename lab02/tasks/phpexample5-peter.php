@@ -17,17 +17,27 @@ function quadrant($x, $y) {
 
 // From https://www.movable-type.co.uk/scripts/latlong.html
 function bearing($x1, $y1, $x2, $y2) {
-  $y = sin($y2 - $y1) * cos($x2);
-  $x = (cos($x1) * sin($x2)) - (sin($x1) * cos($x2) * cos($y2 - $y1));
+  $x1Rad = deg2rad($x1);
+  $y1Rad = deg2rad($y1);
+  $x2Rad = deg2rad($x2);
+  $y2Rad = deg2rad($y2);
+
+  $y = sin($y2Rad - $y1Rad) * cos($x2Rad);
+  $x = (cos($x1Rad) * sin($x2Rad)) - (sin($x1Rad) * cos($x2Rad) * cos($y2Rad - $y1Rad));
   return((rad2deg(atan2($y, $x)) + 360) % 360);
 }
 
 // https://www.movable-type.co.uk/scripts/gis-faq-5.1.html
 function haversine($x1, $y1, $x2, $y2) {
-  $x = $x2 - $x1;
-  $y = $y2 - $y1;
+  $x1Rad = deg2rad($x1);
+  $y1Rad = deg2rad($y1);
+  $x2Rad = deg2rad($x2);
+  $y2Rad = deg2rad($y2);
 
-  $a = (0.5 - (0.5 * cos($y))) + (cos($y1) * cos($y2) * (0.5 - (0.5 * cos($x))));
+  $x = $x2Rad - $x1Rad;
+  $y = $y2Rad - $y1Rad;
+
+  $a = (0.5 - (0.5 * cos($y))) + (cos($y1Rad) * cos($y2Rad) * (0.5 - (0.5 * cos($x))));
   $c = 2 * asin(min(1, sqrt($a)));
   return(6367 * $c);
 }
@@ -95,7 +105,7 @@ function geomatics_things($x1, $y1, $x2, $y2) {
   $message .= "<br/>Point 1 Quadrant: " . quadrant($x1, $y1);
   $message .= "<br/>Point 2 Quadrant: " . quadrant($x2, $y2);
 
-  $message .= "<br/>Bearing: " . bearing($x1, $y1, $x2, $y2);
+  $message .= "<br/>Bearing: " . bearing($x1, $y1, $x2, $y2) . " degrees";
   $message .= "<br/>Great Circle Distance: " . haversine($x1, $y1, $x2, $y2) . "km";
 
   return($message);
