@@ -1,0 +1,25 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#like-button").on('click', function() {
+        $.ajax({
+          type: 'GET',
+          url: 'bonus-peter.php',
+          success: function(response) {
+            $('#like-button').css('background-color', response);
+            $('#like-button').css('color', 'white');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <button id="like-button">Like</button>
+</body>
+
+</html>
