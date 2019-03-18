@@ -1,0 +1,127 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      function validateFields() {
+        var x1Val = parseFloat($('#x1').val());
+        var y1Val = parseFloat($('#y1').val());
+        var x2Val = parseFloat($('#x2').val());
+        var y2Val = parseFloat($('#y2').val());
+        var valid = true;
+
+        $(".error").html('');
+
+        if (isNaN(x1Val) || x1Val < -180.0 || x1Val > 180.0) {
+          $("#x1-error").html('Please enter a number in the range -180.0 < x < 180.0 for Point 1: x.');
+          valid=false;
+        }
+
+        if (isNaN(y1Val) || y1Val < -90.0 || y1Val > 90.0) {
+          $("#y1-error").html('Please enter a number in the range -90.0 < y < 90.0 for Point 1: y.');
+          valid = false;
+        }
+
+        if (isNaN(x2Val) || x2Val < -180.0 || x2Val > 180.0) {
+          $("#x2-error").html('Please enter a number in the range -180.0 < x < 180.0 for Point 2: x.');
+          valid = false;
+        }
+
+        if (isNaN(y2Val) || y2Val < -90.0 || y2Val > 90.0) {
+          $("#y2-error").html('Please enter a number in the range -90.0 < y < 90.0 for Point 2: y.');
+          valid = false;
+        }
+
+        if (!valid) {
+          $("#submit-button").prop('disabled', true);
+          return;
+        }
+
+        if (x2Val < x1Val) {
+          $("#x2-error").html('Please enter a number greater than or equal to Point 1: x for Point 2: x.');
+          valid = false;
+        }
+
+        if (y2Val < y1Val) {
+          $("#y2-error").html('Please enter a number greater than or equal to Point 1: y for Point 2: y.')
+          valid = false;
+        }
+
+        if (valid) {
+          $("#submit-button").prop('disabled', false);
+        } else {
+          $("#submit-button").prop('disabled', true);
+        }
+      }
+
+      $(".point-input").on('input', function() {validateFields();});
+
+      $("#submit-button").on('click', function() {
+        var displayTypeValue = $("input[name='display-type']:checked").attr('id');
+        var x1Val = $('#x1').val();
+        var y1Val = $('#y1').val();
+        var x2Val = $('#x2').val();
+        var y2Val = $('#y2').val();
+        var valString = x1Val + ',' + y1Val + ',' + x2Val + ',' + y2Val
+
+        alert(displayTypeValue);
+        $.ajax({
+          type: 'GET',
+          url: 'https://api.flickr.com/services/rest/',
+          dataType: 'json',
+          data: {
+            api_key: '066e8781fe64f4caf47cc56460768f5d',
+            method: 'flickr.photos.search',
+            bbox: valString,
+            extras: 'geo',
+            has_geo: 1,
+            per_page: 20,
+            format: 'json',
+            nojsoncallback: 1
+          },
+          success: function(response) {
+            $("#result").html('');
+            if (displayTypeValue == 'display-type-picture') {
+              for (i in response.photos.photo) {
+                var source = 'https://farm' + response.photos.photo[i].farm + '.staticflickr.com/' + response.photos.photo[i].server + '/' + response.photos.photo[i].id + '_' + response.photos.photo[i].secret + '.jpg';
+                var image = $('<img>');
+                image.attr('src', source);
+                $('#result').append(image);
+              }
+            } else {
+              $('#result').html(JSON.stringify(response));
+            }
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <input type="radio" name="display-type" id="display-type-picture">Picture</input>
+  <input type="radio" name="display-type" id="display-type-json">JSON</input>
+  <p id="x1-error" class="error"></p>
+  <p id="y1-error" class="error"></p>
+  <p id="x2-error" class="error"></p>
+  <p id="y2-error" class="error"></p>
+  <form class="points-form">
+    Point 1, Bottom Left:<br>
+    x: <input id="x1" name="x1" type="text" class="point-input">
+    <br>
+    y: <input id="y1" name="y1" type="text" class="point-input">
+    <br>
+    <br>
+    Point 2, Top Right:
+    <br>
+    x: <input id="x2" name="x2" type="text" class="point-input">
+    <br>
+    y: <input id="y2" name="y2" type="text" class="point-input">
+    <br>
+    <br>
+  </form>
+  <button id="submit-button">Submit</button>
+  <div id='result'></div>
+</body>
+</html>

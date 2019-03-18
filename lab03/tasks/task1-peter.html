@@ -1,0 +1,83 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+  function displayResponse(response) {
+    if (displayType == 'xml') {
+      $('#result-text').html('');
+      $('#xml-result-text').html(response);
+      $('#result-table').html('');
+    } else if (displayType == 'table') {
+      $('#result-text').html('');
+      $('#xml-result-text').html('');
+      $('#result-table').html(response);
+    } else {
+      $('#result-text').html(response);
+      $('#xml-result-text').html('');
+      $('#result-table').html('');
+    }
+  }
+
+  $('#search-field').on('input', function() {
+    text = $('#search-field').val();
+    displayType = $('#display-type').val();
+    $.ajax({
+      url: 'task1-peter.php',
+      type: 'POST',
+      data: jQuery.param({
+        searchText: text,
+        displayType: displayType
+      }),
+      success: function(response) {
+          $('#sector-selectlist>option:eq(0)').prop('selected', true);
+          displayResponse(response);
+      }
+    });
+  });
+
+  $('#sector-selectlist').change(function() {
+    sector = $('#sector-selectlist').val();
+    displayType = $('#display-type').val();
+    $.ajax({
+      url: 'task1-peter.php',
+      type: 'POST',
+      data: jQuery.param({
+        sector: sector,
+        displayType: displayType
+      }),
+      success: function(response) {
+        $('#search-field').change('');
+        displayResponse(response);
+      }
+    });
+  });
+});
+</script>
+</head>
+<body>
+<input id="search-field" type="text">
+or
+<select id="sector-selectlist">
+  <option value="none">None</option>
+  <option value="SW">SW</option>
+  <option value="NW">NW</option>
+  <option value="SE">SE</option>
+  <option value="NE">NE</option>
+</select>
+<br>
+<br>
+<select id="display-type">
+  <option value="json">JSON</option>
+  <option value="xml">XML</option>
+  <option value="csv">Comma Separated Value</option>
+  <option value="table">Table</option>
+</select>
+<br>
+<p id='result-text'></p>
+<xmp id='xml-result-text'></xmp>
+<table id='result-table'>
+
+</table>
+</body>
+</html>

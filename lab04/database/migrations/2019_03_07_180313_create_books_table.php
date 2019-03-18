@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('isbn')->unique();
             $table->integer('publication_year');
             $table->string('publisher');
-            // $table->string('subscription_status');
+            $table->boolean('subscription_status')->default('false');
             $table->string('image');
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends Controller
 {
@@ -13,7 +14,13 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            $authors = \App\Author::all();
+
+            return view('authors.index', compact('authors'));
+        } else {
+            return redirect()->intended('login');
+        }
     }
 
     /**
@@ -34,7 +41,26 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            $request->validate([
+                'name' => 'required'
+            ]);
+
+            $author = \App\Author::where('name', '=', $request->name)->first();
+            if (!is_null($author)) {
+                \Session::flash('error', 'Author already exists');
+                return redirect()->back();
+            }
+
+            $author = new \App\Author([
+                'name' => $request->name
+            ]);
+            $author->save();
+
+            return redirect()->back();
+        } else {
+            return redirect()->intended('login');
+        }
     }
 
     /**
@@ -79,6 +105,17 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            $books = \App\Book::all();
+            foreach ($books as $book) {
+                if ($book->author->id == $id) {
+                    \App\Book::destroy($book->id);
+                }
+            }
+            \App\Author::destroy($id);
+            return redirect()->back();
+        } else {
+            return redirect()->intended('login');
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -34,7 +35,27 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::check()) {
+            $request->validate([
+                'book_id' => 'required',
+                'comment' => 'required'
+            ]);
+            $book = \App\Book::find($request->book_id);
+            if (Auth::user()->subscribedToBook($book) || Auth::user()->role == 'admin') {
+                $comment = new \App\Comment([
+                    'user_id' => Auth::id(),
+                    'book_id' => $book->id,
+                    'text' => $request->comment
+                ]);
+                $comment->save();
+                \Session::flash('message', 'Comment Submission Succeeded');
+            } else {
+                \Session::flash('message', 'Comment Submission Failed');
+            }
+            return redirect()->route('book.show', $book->id);
+        } else {
+            return redirect()->intended('login');
+        }
     }
 
     /**

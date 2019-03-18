@@ -37,4 +37,29 @@ class User extends Authenticatable
         'account_created_at' => 'datetime',
     ];
 
+    public function subscriptions() {
+        return $this->hasMany('App\Subscription');
+    }
+
+    public function comments() {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function subscribedBooks()
+    {
+        $books = [];
+        foreach($this->subscriptions as $subscription) {
+            array_push($books, $subscription->book);
+        }
+        return $books;
+    }
+
+    public function subscribedToBook($book)
+    {
+        foreach($this->subscriptions as $subscription) {
+            if ($subscription->book_id == $book->id)
+                return true;
+        }
+        return false;
+    }
 }
