@@ -17,7 +17,7 @@ class CreateSubscriptionTable extends Migration
           $table->bigIncrements('id');
           $table->bigInteger('user_id');
           $table->foreign('user_id')->references('id')->on('users');
-          $table->bigInteger('user_id');
+          $table->bigInteger('content_id');
           $table->foreign('content_id')->references('id')->on('contents');
           $table->string('active');
           $table->timestamps();
