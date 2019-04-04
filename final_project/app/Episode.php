@@ -20,6 +20,12 @@ class Episode extends Model
         'runtime'
     ];
 
+    public function userWatched($user){
+        //check if there is a watchstatus for a given episode
+        //if yes return true
+        //else return false
+    }
+
     public function content()
     {
         return $this->belongsTo(Content::class);
