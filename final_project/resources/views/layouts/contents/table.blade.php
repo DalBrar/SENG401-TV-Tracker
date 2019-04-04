@@ -23,7 +23,7 @@
       <td>{{$content->country}}</td>
       <td>{{$content->rating}}</td>
       <td>{{$content->language}}</td>
-      <td>{{$content->actions}}</td>      
+      <td>{{$content->actions}}</td>
       <td>
       </td>
     </tr>
