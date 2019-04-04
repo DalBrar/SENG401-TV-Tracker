@@ -25,19 +25,6 @@
       <td>{{$content->language}}</td>
       <td>{{$content->actions}}</td>      
       <td>
-        <!-- @if ($book->userSubscribed(Auth::user()))
-        <form action="{{route('subscriptions.destroy_by_book_id', ['id' => $book->id])}}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button class="btn" type="submit">Unsubscribe</button>
-        </form>
-        @else
-        <form action="{{route('subscriptions.store', ['book_id' => $book->id])}}" method="POST">
-            @csrf
-            @method('POST')
-            <button class="btn" type="submit">Subscribe</button>
-        </form>
-        @endif -->
       </td>
     </tr>
     @endforeach
