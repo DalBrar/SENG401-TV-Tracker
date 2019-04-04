@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/shows/{id}/episodes', 'WatchController@store')->('watchstatus.store');
+Route::delete('/shows/{id}/episodes', 'WatchController@destroy')->('watchstatus.destroy');

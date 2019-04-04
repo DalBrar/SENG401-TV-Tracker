@@ -23,7 +23,7 @@
       <td>{{$content->country}}</td>
       <td>{{$content->rating}}</td>
       <td>{{$content->language}}</td>
-      <td>{{$content->actions}}</td>      
+      <td>{{$content->actions}}</td>
       <td>
         <!-- @if ($book->userSubscribed(Auth::user()))
         <form action="{{route('subscriptions.destroy_by_book_id', ['id' => $book->id])}}" method="POST">
