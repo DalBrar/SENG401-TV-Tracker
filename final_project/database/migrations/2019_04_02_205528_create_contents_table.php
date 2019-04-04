@@ -19,7 +19,6 @@ class CreateContentsTable extends Migration
 
             // Content info from Trake, shared between both movies and TV shows:
             //  TV Shows: GET https://api.trakt.tv/shows/id?extended=full
-            //  Movies: GET https://api.trakt.tv/movies/id?extended=full
 
             $table->string('title');
             $table->integer('year');
