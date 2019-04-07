@@ -15,19 +15,19 @@ class CreateEpisodesTable extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('content_id');
-            $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
+            $table->integer('content_trakt_id');
+            $table->foreign('content_trakt_id')->references('trakt_id')->on('contents')->onDelete('cascade');
             $table->timestamps();
 
             // Episode Info From Trakt: GET https://api.trakt.tv/shows/id/seasons/season/episodes/episode?extended=full
-            $table->integer('season');
-            $table->integer('number');
-            $table->string('title');
-            $table->integer('trakt_id');
-            $table->string('overview');
-            $table->string('first_aired');
-            $table->integer('rating');
-            $table->integer('runtime');
+            // $table->integer('season');
+            // $table->integer('number');
+            // $table->string('title');
+            $table->integer('trakt_id')->unique();
+            // $table->text('overview');
+            // $table->string('first_aired');
+            // $table->double('rating');
+            // $table->integer('runtime');
         });
     }
 

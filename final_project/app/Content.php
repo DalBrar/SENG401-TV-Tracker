@@ -21,11 +21,21 @@ class Content extends Model
 
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscription::class, 'content_trakt_id', 'trakt_id');
     }
-    
+
     public function episodes()
     {
-        return $this->hasMany(Episode::class);
+        return $this->hasMany(Episode::class, 'content_trakt_id', 'trakt_id');
+    }
+
+    public function userSubscribed($user)
+    {
+        foreach ($this->subscriptions as $subscription) {
+            if ($subscription->user_id == $user->id && $subscription->active) {
+                return true;
+            }
+        }
+        return false;
     }
 }

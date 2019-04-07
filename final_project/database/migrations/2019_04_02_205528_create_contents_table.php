@@ -20,15 +20,15 @@ class CreateContentsTable extends Migration
             // Content info from Trake, shared between both movies and TV shows:
             //  TV Shows: GET https://api.trakt.tv/shows/id?extended=full
 
-            $table->string('title');
-            $table->integer('year');
-            $table->integer('trakt_id');
-            $table->string('overview');
-            $table->integer('runtime');
-            $table->string('certification');
-            $table->string('country');
-            $table->integer('rating');
-            $table->string('language');
+            // $table->string('title');
+            // $table->integer('year');
+            $table->integer('trakt_id')->unique();
+            // $table->text('overview');
+            // $table->integer('runtime');
+            // $table->string('certification');
+            // $table->string('country');
+            // $table->double('rating');
+            // $table->string('language');
         });
     }
 

@@ -10,8 +10,8 @@ class WatchStatus extends Model
 {
   protected $fillable = [
     'subscription_id',
-    'episode_id',
-    'status'
+    'episode_trakt_id',
+    'watched'
   ];
 
   public function subscription(){
@@ -20,6 +20,6 @@ class WatchStatus extends Model
 
   public function episode()
   {
-    return $this->belongsTo(Episode::class);
+    return $this->belongsTo(Episode::class, 'episode_trakt_id', 'trakt_id');
   }
 }

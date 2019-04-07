@@ -13,13 +13,13 @@ class CreateWatchstatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('watchstatuses', function (Blueprint $table) {
+        Schema::create('watch_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('subscription_id');
-            $table->foreign('subscription_id')->references('id')->on('subscriptions');
-            $table->bigInteger('episode_id');
-            $table->foreign('episode_id')->references('id')->on('episodes');
-            $table->string('status');
+            $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');
+            $table->integer('episode_trakt_id');
+            $table->foreign('episode_trakt_id')->references('trakt_id')->on('episodes')->onDelete('cascade');
+            $table->boolean('watched');
             $table->timestamps();
         });
     }

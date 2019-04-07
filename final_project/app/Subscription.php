@@ -11,12 +11,12 @@ class Subscription extends Model
 {
   protected $fillable = [
     'user_id',
-    'content_id',
-    'status'
+    'content_trakt_id',
+    'active'
   ];
 
   public function content(){
-      return $this->belongsTo(Content::class);
+      return $this->belongsTo(Content::class, 'content_trakt_id', 'trakt_id');
   }
 
   public function watchStatus(){

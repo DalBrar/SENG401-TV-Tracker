@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Episode extends Model
 {
     protected $fillable = [
-        'content_id',
+        'content_trakt_id',
         'season',
         'number',
         'title',
@@ -21,18 +21,25 @@ class Episode extends Model
     ];
 
     public function userWatched($user){
-        //check if there is a watchstatus for a given episode
-        //if yes return true
-        //else return false
+        foreach ($this->watchStatuses as $watchStatus) {
+            if ($watchStatus->subscription->user_id == $user->id) {
+                if ($watchStatus->watched) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
     }
 
     public function content()
     {
-        return $this->belongsTo(Content::class);
+        return $this->belongsTo(Content::class, 'content_trakt_id', 'trakt_id');
     }
 
     public function watchStatuses()
     {
-        return $this->belongsToMany(WatchStatus::class);
+        return $this->hasMany(WatchStatus::class, 'episode_trakt_id', 'trakt_id');
     }
 }
