@@ -20,6 +20,7 @@
                 @csrf
                 @method('POST')
                 <input type="hidden" value="{{ $episode->trakt_id }}" name="trakt_id" required>
+                <input type="hidden" value="{{ $episode->content_trakt_id }}" name="content_trakt_id" required>
                 <button class="btn" type="submit">Watch</button>
             </form>
             @else
@@ -27,11 +28,16 @@
                 @csrf
                 @method('DELETE')
                 <input type="hidden" value="{{ $episode->trakt_id }}" name="trakt_id" required>
+                <input type="hidden" value="{{ $episode->content_trakt_id }}" name="content_trakt_id" required>
                 <button class="btn" type="submit">Forget</button>
             </form>
             @endif
         @endif
         <form action="{{route('episode.show', ['content_id' => $episode->content->trakt_id, 'episode_id' => $episode->trakt_id])}}" method="GET">
+            <input type="hidden" value="{{ $episode->content_trakt_id }}" name="content_trakt_id" required>
+            <input type="hidden" value="{{ $episode->trakt_id }}" name="trakt_id" required>
+            <input type="hidden" value="{{ $episode->season }}" name="season" required>
+            <input type="hidden" value="{{ $episode->number }}" name="number" required>
             <button class="btn-primary" type="submit">More Info</button>
         </form>
       </td>

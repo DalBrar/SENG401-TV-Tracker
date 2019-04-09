@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Content;
-use App\Episode;
-use App\WatchStatus;
-
 use Illuminate\Http\Request;
+use App\WatchStatus;
+use App\Episode;
+use App\Subscription;
 use Illuminate\Support\Facades\Auth;
 
 class WatchStatusController extends Controller
@@ -19,28 +18,17 @@ class WatchStatusController extends Controller
    */
   public function store(Request $request)
   {
-    if(Auth::check()) {
-      $user = Auth::user();
-      $content = Content::where('trakt_id', $request->route('id'))->first();
-      $subscription = $user->subscription_for_content($content);
-
-      $existing_episode = Episode::where('trakt_id', $request->trakt_id)->first();
-      if (is_null($existing_episode)) {
-        Episode::create([
-          'trakt_id' => $request->trakt_id,
-          'content_trakt_id' => $content->trakt_id
-        ]);
-      }
-
-      WatchStatus::create([
-        'subscription_id' => $subscription->id,
-        'episode_trakt_id' => $request->trakt_id,
-        'watched' => true
-      ]);
-
-      \Session::flash('message', 'Episode Watched');
-      return redirect()->back();
+    if(Auth::check()){
+      // TODO: get the subscription_id
+      $episode = Episode::all()->where('trakt_id', $request->input('trakt_id'))->first();
+      $subscription = Subscription::all()->where('user_id', Auth::user()->id)->where('content_trakt_id', $request->input('content_trakt_id'))->first();
+      $watchstatus['subscription_id'] = $subscription->id;
+      $watchstatus['episode_trakt_id'] =  $episode->trakt_id;
+      $watchstatus['watched'] =  true;
+      WatchStatus::create($watchstatus);
     }
+
+    return redirect()->route('watchstatus.store', ['id' => $episode->content_trakt_id]);
   }
 
   /**
@@ -51,14 +39,11 @@ class WatchStatusController extends Controller
      */
     public function destroy(Request $request)
     {
-      if(Auth::check()) {
-        $episode = Episode::where('trakt_id', $request->trakt_id)->first();
-        $subscription = Auth::user()->subscription_for_content($episode->content);
-        $watchstatus = WatchStatus::where('subscription_id', $subscription->id)->where('episode_trakt_id', $request->trakt_id)->first();
-        $watchstatus->watched = false;
-        $watchstatus->save();
-        \Session::flash('message', 'Episode Forgotten');
-        return redirect()->back();
+      if(Auth::check()){
+        $subscription = Subscription::all()->where('user_id', Auth::user()->id)->where('content_trakt_id', $request->input('content_trakt_id'))->first();
+        $watchstatus = WatchStatus::all()->where('episode_trakt_id', $request->input('trakt_id'))->where('subscription_id', $subscription->id)->first();
+        $watchstatus->delete();
       }
+      return redirect()->route('watchstatus.store', ['id' => $request->input('content_trakt_id')]);
     }
 }

@@ -71,6 +71,7 @@ class ContentController extends Controller
         $response = curl_exec($ch);
         curl_close($ch);
 
+
         $jsonArray = json_decode($response, true);
         $contents = [];
         foreach($jsonArray as $item) {
