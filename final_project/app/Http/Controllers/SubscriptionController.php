@@ -36,8 +36,7 @@ class SubscriptionController extends Controller
 
     public function deactivate($id) {
         $subscription = Subscription::find($id);
-        $subscription->active = false;
-        $subscription->save();
+		Subscription::destroy($id);
         \Session::flash('message', 'Subscription Removed');
         return redirect()->back();
     }

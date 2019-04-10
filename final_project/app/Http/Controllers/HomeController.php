@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Subscription;
+use App\Http\ContentController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+		$user = Auth::user()->id;
+		$subs = Subscription::where('user_id', $user)->get('content_trakt_id');
+		
+		$shows = array();
+		foreach ($subs as $sub) {
+			$id = $sub->content_trakt_id;
+			$shows[$id] = app('App\Http\Controllers\ContentController')->summary($id);
+			$shows[$id]['nextEpisode'] = app('App\Http\Controllers\ContentController')->nextEpisode($id);
+		}
+		
+        return view('home', ['shows' => $shows]);
     }
 }

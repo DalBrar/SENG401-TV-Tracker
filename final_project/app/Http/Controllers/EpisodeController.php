@@ -11,11 +11,10 @@ class EpisodeController extends Controller
     public function show(Request $request)
     {
       $episode = new Episode();
-      $episode->content_trakt_id = $request->input('content_trakt_id');
-      $episode->trakt_id = $request->input('trakt_id');
-      $episode->season = $request->input('season');
-      $episode->number = $request->input('number');
-
+      $episode->content_trakt_id = $request->content_trakt_id;
+      $episode->trakt_id = $request->trakt_id;
+      $episode->season = $request->season;
+      $episode->number = $request->number;
       $ch = curl_init();
 
       curl_setopt($ch,
@@ -28,7 +27,7 @@ class EpisodeController extends Controller
       curl_setopt($ch, CURLOPT_HTTPHEADER, array(
       "Content-Type: application/json",
       "trakt-api-version: 2",
-      "trakt-api-key: " . env('api_id')
+      "trakt-api-key: " . env('API_ID')
       ));
 
       $response = curl_exec($ch);

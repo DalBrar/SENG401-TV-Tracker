@@ -16,7 +16,9 @@ class Content extends Model
         'certification',
         'country',
         'rating',
-        'language'
+        'language',
+		'airson',
+		'num_eps'
     ];
 
     public function subscriptions()

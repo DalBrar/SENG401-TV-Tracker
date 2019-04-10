@@ -16,34 +16,48 @@ class WatchStatusController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
-  {
-    if(Auth::check()){
-      // TODO: get the subscription_id
-      $episode = Episode::all()->where('trakt_id', $request->input('trakt_id'))->first();
-      $subscription = Subscription::all()->where('user_id', Auth::user()->id)->where('content_trakt_id', $request->input('content_trakt_id'))->first();
-      $watchstatus['subscription_id'] = $subscription->id;
-      $watchstatus['episode_trakt_id'] =  $episode->trakt_id;
-      $watchstatus['watched'] =  true;
-      WatchStatus::create($watchstatus);
-    }
+	public function store(Request $request)
+	{
+		if(Auth::check()){
+			$episode = Episode::all()->where('trakt_id', $request->input('trakt_id'))->first();
+			$subscription = Subscription::all()->where('user_id', Auth::user()->id)->where('content_trakt_id', $request->input('content_trakt_id'))->first();
+			$watchstatus['subscription_id'] = $subscription->id;
+			$watchstatus['episode_trakt_id'] =  $episode->trakt_id;
+			$watchstatus['watched'] =  true;
+			WatchStatus::create($watchstatus);
 
-    return redirect()->route('watchstatus.store', ['id' => $episode->content_trakt_id]);
-  }
+			$title = $request->title;
+			\Session::flash('message', 'Episode ' . $title . ' Watched');
+			
+			return redirect()->route('content.show', ['id' => $request->input('content_trakt_id')]);
+		}
+		else {
+			\Session::flash('error', 'You are not authorized to do that. Please log in.');
+			return redirect()->back();
+		}
+	}
 
-  /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-      if(Auth::check()){
-        $subscription = Subscription::all()->where('user_id', Auth::user()->id)->where('content_trakt_id', $request->input('content_trakt_id'))->first();
-        $watchstatus = WatchStatus::all()->where('episode_trakt_id', $request->input('trakt_id'))->where('subscription_id', $subscription->id)->first();
-        $watchstatus->delete();
-      }
-      return redirect()->route('watchstatus.store', ['id' => $request->input('content_trakt_id')]);
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy(Request $request)
+	{
+		if(Auth::check()) {
+			$subscription = Subscription::all()->where('user_id', Auth::user()->id)->where('content_trakt_id', $request->input('content_trakt_id'))->first();
+			$watchstatus = WatchStatus::all()->where('episode_trakt_id', $request->input('trakt_id'))->where('subscription_id', $subscription->id)->first();
+			$watchstatus->delete();
+
+			$title = $request->title;
+			\Session::flash('message', 'Episode ' . $title . ' Forgotten');
+			
+			return redirect()->route('content.show', ['id' => $request->input('content_trakt_id')]);
+		}
+		else {
+			\Session::flash('error', 'You are not authorized to do that. Please log in.');
+			return redirect()->back();
+		}
+	}
 }
