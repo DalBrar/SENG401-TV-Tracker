@@ -15,7 +15,7 @@ class CreateWatchstatusesTable extends Migration
     {
         Schema::create('watch_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('subscription_id');
+            $table->bigInteger('subscription_id')->unsigned();
             $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');
             $table->integer('episode_trakt_id');
             $table->foreign('episode_trakt_id')->references('trakt_id')->on('episodes')->onDelete('cascade');

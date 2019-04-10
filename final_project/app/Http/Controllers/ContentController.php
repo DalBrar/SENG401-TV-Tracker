@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\Episode;
+use App\Subscription;
+use App\WatchStatus;
 use App\Http\EpisodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +15,7 @@ class ContentController extends Controller
     public function show($trakt_id)
     {
         $content = $this->summary($trakt_id);
-
+		
         $ch = curl_init();
 
         curl_setopt($ch,
@@ -26,7 +28,7 @@ class ContentController extends Controller
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Content-Type: application/json",
         "trakt-api-version: 2",
-        "trakt-api-key: " . env('api_id')
+        "trakt-api-key: " . env('API_ID')
         ));
 
         $response = curl_exec($ch);
@@ -45,6 +47,7 @@ class ContentController extends Controller
                     'trakt_id' => $episodeJson['ids']['trakt'],
                 ]);
                 array_push($episodes, $episode);
+				app('App\Http\Controllers\EpisodeController')->store($episode);
             }
         }
 
@@ -70,7 +73,6 @@ class ContentController extends Controller
 
         $response = curl_exec($ch);
         curl_close($ch);
-
 
         $jsonArray = json_decode($response, true);
         $contents = [];
@@ -115,7 +117,7 @@ class ContentController extends Controller
         return view('contents.popular', ['contents' => $contents]);
     }
 
-    private function summary($traktId)
+    public function summary($traktId)
     {
         $ch = curl_init();
 
@@ -138,6 +140,34 @@ class ContentController extends Controller
         $jsonObject = json_decode($response, true);
         $content = new Content($jsonObject);
         $content->trakt_id = $traktId;
+		
+		// Calculate unwatched episodes
+		$userId = Auth::user()->id;
+		$subs = Subscription::where([
+				['user_id', '=', $userId],
+				['content_trakt_id', '=', $traktId]
+			])->get();
+		if (count($subs) != 0) {
+			$subId = Subscription::where([
+				['user_id', '=', $userId],
+				['content_trakt_id', '=', $traktId]
+			])->get('id')->first()->id;
+			$e_watched = WatchStatus::where('subscription_id', $subId)->count();
+			$e_total = $jsonObject['aired_episodes'];
+			
+			$e_unwatched = intval($e_total) - intval($e_watched);
+			if ($e_unwatched > 0)
+				$content->num_eps = $e_unwatched;
+		}
+		
+		// create season-episode string
+		$ad = $jsonObject['airs']['day'];
+		$at = $jsonObject['airs']['time'];
+		if (is_null($ad) || is_null($at))
+			$content->airson = "Not Available";
+		else
+			$content->airson = $ad ."s at ". $at;
+		
         $existing_content = Content::where('trakt_id', $content->trakt_id)->first();
         if (is_null($existing_content)) {
             Content::create([
@@ -147,4 +177,35 @@ class ContentController extends Controller
         }
         return $content;
     }
+	
+	public function nextEpisode($traktId)
+	{
+        $ch = curl_init();
+
+        curl_setopt($ch,
+            CURLOPT_URL,
+            "https://api.trakt.tv/shows/" . $traktId . "/next_episode"
+        );
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        "Content-Type: application/json",
+        "trakt-api-version: 2",
+        "trakt-api-key: " . env('API_ID')
+        ));
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $ep = json_decode($response, true);
+		$s = $ep['season'];
+		$e = $ep['number'];
+		if (is_null($s) || is_null($e))
+			$nextEpisode = "Not Available";
+		else
+			$nextEpisode = "s". $s ."e". $e;
+		
+        return $nextEpisode;
+	}
 }
